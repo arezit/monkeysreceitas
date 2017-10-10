@@ -1,0 +1,52 @@
+<?php
+
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'tex');
+define('DB_USER','root');
+define('DB_PASSWORD','');
+
+
+
+$con=mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD) or die("Failed to connect to MySQL: " . mysqli_error());
+$db=mysqli_select_db($con,DB_NAME) or die("Failed to connect to MySQL: " . mysqli_error());
+
+
+function NewUser()
+{
+	$fullname = $_POST['name'];
+	$userName = $_POST['user'];
+	$email = $_POST['email'];
+	$password =  $_POST['pass'];
+	$query = "INSERT INTO websiteusers (fullname,userName,email,pass) VALUES ('$fullname','$userName','$email','$password')";
+	$data = mysqli_query (mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD),$query)or die(mysqli_error(mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD)));
+	if($data)
+	{
+	echo "YOUR REGISTRATION IS COMPLETED...";
+	}
+	else
+	{
+		echo "mysqli_error(mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD));";
+	}
+}
+
+function SignUp()
+{
+if(!empty($_POST['user']))   //checking the 'user' name which is from Sign-Up.html, is it empty or have some text
+{
+	$query = mysqli_query(mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD),"SELECT * FROM websiteusers WHERE userName = '$_POST[user]' AND pass = '$_POST[pass]'") or die(mysqli_error(mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD)));
+
+	if(!$row = mysqli_fetch_array($query) or die(mysqli_error()))
+	{
+		newuser();
+	}
+	else
+	{
+		echo "SORRY...YOU ARE ALREADY REGISTERED USER...";
+	}
+}
+}
+if(isset($_POST['submit']))
+{
+	SignUp();
+}
+?>
