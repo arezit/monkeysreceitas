@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>menu</title>
 </head>
-<body bgcolor="red">
+<body bgcolor="cyan">
 
 </body>
 </html>
