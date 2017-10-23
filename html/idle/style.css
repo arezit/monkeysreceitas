@@ -1,0 +1,90 @@
+.table
+{
+  width: 750px;
+  margin-top:-90px; 
+  margin-left:-175px; 
+  position:absolute;
+  top:35%;
+  left:35%;
+  border: 0;
+}
+
+.bss-slides
+{
+  position: relative;
+  display: block;    
+}
+
+.bss-slides:focus
+{
+ outline: 0;
+}
+
+.bss-slides figure
+{
+  position: absolute;
+  top: 0;
+  margin-left: 0;
+  width: 100%;
+}
+
+.bss-slides figure:first-child
+{
+  position: relative;
+}
+
+.bss-slides figure img
+{
+  opacity: 0;
+  width: 100%;
+  -webkit-transition: opacity 1.2s;
+  transition: opacity 1.2s;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.bss-slides .bss-show 
+{
+  z-index: 3;
+}
+
+.bss-slides .bss-show img
+{
+  opacity: 1;
+ -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.bss-next,
+.bss-prev
+{
+  color: #fff;
+  position: absolute;
+  top: 60%;
+  z-index: 4;
+  font-size: 5em;
+  margin-top: -1.2em;
+  opacity: .86;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.bss-next:hover, .bss-prev:hover
+{
+  cursor: pointer;
+  color: black;
+  opacity: 1;
+}
+
+.bss-next
+{
+  right: 0;
+}
+
+.bss-prev
+{
+  left: 0;
+}
