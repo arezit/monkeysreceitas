@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script> 
+    <script type="text/javascript">
+      $(document).ready(function() {	
+
+      	$('input[name=modal]').click(function(e) {
+      		e.preventDefault();
+      		
+      		var id = $(this).attr('href');
+      	
+      		var maskHeight = $(document).height();
+      		var maskWidth = $(window).width();
+      	
+      		$('#mask').css({'width':maskWidth,'height':maskHeight});
+
+      		$('#mask').fadeIn(1000);	
+      		$('#mask').fadeTo("slow",0.9);	
+      	
+      		var winH = $(window).height();
+      		var winW = $(window).width();
+                    
+      		$(id).css('top',  winH/2-$(id).height()/2);
+      		$(id).css('left', winW/2-$(id).width()/2);
+      	
+      		$(id).fadeIn(1250); 
+      	
+      	});
+      	
+      	$('.window .close').click(function (e) {
+      		e.preventDefault();
+      		
+      		$('#mask').hide();
+      		$('.window').hide();
+      	});		
+      	
+      	$('#mask').click(function () {
+      		$(this).hide();
+      		$('.window').hide();
+      	});			
+      	
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="btn">
+      <input type="button" value="Login" href="#dialog1" name="modal" />
+    </div>
+
+    <div id="boxes">
+      <div id="dialog1" class="window">
+        <div>
+          <center>
+            <img class="img" src="Image/test.svg" />
+          </center>
+        </div>
+
+        </br>
+        </br>
+
+        <div id="mid">
+
+          <div id="test">
+            <i class="user"></i>
+            <input type="text" placeholder="&nbsp;Usuário" onclick="this.value=''"/>
+          </div>
+
+          </br>
+
+          <div id="test">
+            <i class="pass"></i>
+            <input type="password" value="Password" onclick="this.value=''"/>    
+          </div>
+
+          </br>
+          
+          <div id="btn1">
+            <input type="button" value="Login" />
+          </div>
+
+        </div>
+      </div>
+
+      <div id="mask"></div>
+
+    </div>
+  </body>
+</html>

@@ -19,8 +19,11 @@
 
 						
 						
-						if($query3)
-							header("location:viewReceitasCadastrado.php");
+						if($query3){
+							echo "<script language='javascript' type='text/javascript'>alert('Receita editada com sucesso!');</script>";
+							echo"<script language='javascript' type='text/javascript'>window.location.href='viewReceitasCadastrado.php';</script>";
+							//header("location:viewReceitasCadastrado.php");
+						}
 					}
 				
 				$query1=mysqli_query($conn,"select * from receita where codReceita LIKE '$codReceita'");

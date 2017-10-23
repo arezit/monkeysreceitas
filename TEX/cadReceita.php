@@ -20,7 +20,7 @@
         $insert = mysqli_query($conn, $query);
         if($insert)
         {
-            echo"<script language='javascript' type='text/javascript'>alert('Receita cadastrada com sucesso!');window.location.href='receita.php'</script>";
+            echo"<script language='javascript' type='text/javascript'>alert('Receita cadastrada com sucesso!');window.location.href='viewReceitasCadastrado.php'</script>";
         }
         else
         {

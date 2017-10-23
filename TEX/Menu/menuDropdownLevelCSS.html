@@ -1,0 +1,49 @@
+<html>
+	<link rel="stylesheet" href="menu.css" type="text/css" />
+	
+	<ul id="nav">
+		<li class="recipes"><a href="#">Menu</a>
+			<ul>
+				<li>
+					<a href="#"> Doces &raquo;</a>
+				</li>
+				
+				<li>
+					<a href="#"> Salgados &raquo;</a>
+						<ul>
+							<li>
+								<a href="#"> NS</a>
+							</li>
+						</ul>
+
+				</li>
+				
+				<li>
+					<a href="#"> Bebidas &raquo;</a>
+				</li>
+				
+				<li>
+					<a href="#"> Saladas &raquo;</a>
+				</li>
+			</ul>
+		</li>
+	<script>
+
+		$(document).ready(function()
+			{
+				$("#nav li").hover
+				(
+					function()
+					{
+						$(this).children('ul').hide();
+						$(this).children('ul').slideDown('fast');
+					},
+					function () {
+						$('ul', this).slideUp('fast');            
+					}
+				);
+			}
+		);
+
+	</script>
+</html>

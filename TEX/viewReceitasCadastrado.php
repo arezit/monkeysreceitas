@@ -28,6 +28,6 @@
 				}
 				echo "</table>";
 			?>
-			<input type="button" name="cadastro" value="Novo Cadastro" onClick="parent.location='receita.php'">
+			<a href="receita.php" target="conteudo"><input type="button" name="cadastro" value="Novo Cadastro"></a>
 		</body>
 </html>

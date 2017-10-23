@@ -1,0 +1,142 @@
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+  
+#boxes .window {
+  position:absolute;
+  left:0;
+  top:0;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+
+#boxes #dialog1 {
+  width: 450px; 
+  height: 350px;
+}
+
+#dialog1
+{
+  position:relative;
+  background-color: #FFF;
+  -webkit-background-clip:padding-box;
+  background-clip:padding-box;
+  border:1px solid #999;
+  border:1px solid rgba(0,0,0,.2);
+  border-radius:6px;
+  outline:0;
+  -webkit-box-shadow:0 3px 9px rgba(0,0,0,.5);
+  box-shadow:0 3px 9px rgba(0,0,0,.5);
+
+}
+
+#boxes #dialog1 #test{
+  width: 397px;
+  background-color: #E7E7E7;
+  /*border:1px solid black;*/
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.user
+{
+  background: url(Image/icone.png) no-repeat center center;
+  background-size: 20px;
+  width: 50px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  border:1;
+}
+
+.pass
+{
+  background: url(Image/cadeado.png) no-repeat center center;
+  background-size: 20px;
+  width: 50px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  border:1;
+}
+
+input[type="text"],
+input[type="password"]
+{
+  font-size: 18;
+  line-height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 343px;
+  border: 1;
+  border-color: #DCDCDC;
+  border-radius: 0px 10px 10px 0px;
+  margin: 0 auto;
+ /* border-top: 0;
+  border-right: 0;
+  border:0;
+  border-left: 1px solid black;*/
+}
+
+#btn input[type="button"]
+{
+  position: relative;
+  display: block;
+  padding: 10px 20px 10px 20px;
+  color: #FFF;
+  margin: 0 auto;
+  background: #66CDAA;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  width: 7%;
+  border: 0.5px solid #16a085;
+  border-width: 1px 1px 3px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+#btn input[type="button"]:hover
+{
+
+  background: #109177;
+
+}
+
+#btn1 input[type="button"]
+{
+  position: relative;
+  display: block;
+  padding: 9px 19px 9px 19px;
+  color: #FFF;
+  margin: 0 auto;
+  background: #66CDAA;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  width: 25%;
+  border: 0.5px solid #16a085;
+  border-width: 1px 1px 3px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+#btn1 input[type="button"]:hover
+{
+
+  background: #109177;
+
+}
+
+.img
+{
+  border-radius: 100px;
+}

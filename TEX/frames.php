@@ -10,7 +10,7 @@
 			<frame name="rank" src="html/menu.html"></frame>
 		<frameset cols="15%,*,15%" noresize border="0">
 			<frame name="esquerda"></frame>
-			<frame name="conteudo" src="html/idle.html"></frame>
+			<frame name="conteudo" src="html/idle/index.html"></frame>
 			<frame name="direita"></frame>
 		</frameset>
 	</frameset>
