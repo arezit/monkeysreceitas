@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Out-2017 às 20:18
+-- Generation Time: 24-Out-2017 às 18:48
 -- Versão do servidor: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -31,6 +31,17 @@ CREATE TABLE `categoria` (
   `descCategoria` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`codCategoria`, `descCategoria`) VALUES
+(1, 'Doce'),
+(2, 'Salgado'),
+(3, 'Bebida / AlcoÃ³lica'),
+(4, 'Bebida / NÃ£o AlcoÃ³lica'),
+(5, 'Salada');
+
 -- --------------------------------------------------------
 
 --
@@ -41,10 +52,23 @@ CREATE TABLE `receita` (
   `codReceita` int(11) NOT NULL,
   `nomeReceita` varchar(255) DEFAULT NULL,
   `ingredientes` text,
-  `modoPreparo` text,
+  `modoPreparo` text CHARACTER SET utf8 COLLATE utf8_bin,
   `codCategoria` int(11) DEFAULT NULL,
-  `codTempo` int(11) DEFAULT NULL
+  `codTempo` int(11) DEFAULT NULL,
+  `codUsuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `receita`
+--
+
+INSERT INTO `receita` (`codReceita`, `nomeReceita`, `ingredientes`, `modoPreparo`, `codCategoria`, `codTempo`, `codUsuario`) VALUES
+(26, 'asd', 'asd', 'asd', 1, 1, 2),
+(27, 'pojkq', 'pjvoiweoweljegnwewgwg', 'olwegowegbwebjweofoweihjngbwefwemgay', 1, 1, 2),
+(28, 'asd', 'asd', 'asd', 2, 1, 2),
+(29, 'asdasd', 'asdasdasd', 'asdasdasdasd', 5, 1, 2),
+(31, 'Ã³Ã­', 'Ã©ÃºÃ¡', 'Ã­Ã¹', 4, 1, 3),
+(32, 'Ã³', 'o', 'o', 3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -56,6 +80,25 @@ CREATE TABLE `tempo` (
   `codTempo` int(11) NOT NULL,
   `descTempo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tempo`
+--
+
+INSERT INTO `tempo` (`codTempo`, `descTempo`) VALUES
+(1, '5 minutos'),
+(2, '10 minutos'),
+(3, '15 minutos'),
+(4, '20 minutos'),
+(5, '25 minutos'),
+(6, '30 minutos'),
+(7, '35 minutos'),
+(8, '40 minutos'),
+(9, '45 minutos'),
+(10, '50 minutos'),
+(11, '55 minutos'),
+(12, '60 minutos'),
+(13, '65 minutos');
 
 -- --------------------------------------------------------
 
@@ -71,6 +114,15 @@ CREATE TABLE `usuario` (
   `senha` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`codUsuario`, `nome`, `email`, `login`, `senha`) VALUES
+(1, 'a', 'a', 'a', 'a'),
+(2, 'aa', 'aa', 'aa', 'aa'),
+(3, 'josÃ©', 'josÃ©', 'josÃ©', 'josÃ©');
+
 -- --------------------------------------------------------
 
 --
@@ -79,8 +131,9 @@ CREATE TABLE `usuario` (
 
 CREATE TABLE `voto` (
   `codVoto` int(11) NOT NULL,
-  `codReceita` int(11) DEFAULT NULL,
-  `codUsuario` int(11) DEFAULT NULL
+  `codReceita` int(11) NOT NULL,
+  `codUsuario` int(11) NOT NULL,
+  `voto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -99,7 +152,8 @@ ALTER TABLE `categoria`
 ALTER TABLE `receita`
   ADD PRIMARY KEY (`codReceita`),
   ADD KEY `CodCategoria` (`codCategoria`),
-  ADD KEY `CodTempo` (`codTempo`);
+  ADD KEY `CodTempo` (`codTempo`),
+  ADD KEY `FK_receitaUsuario` (`codUsuario`);
 
 --
 -- Indexes for table `tempo`
@@ -129,22 +183,22 @@ ALTER TABLE `voto`
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `codCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `receita`
 --
 ALTER TABLE `receita`
-  MODIFY `codReceita` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codReceita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `tempo`
 --
 ALTER TABLE `tempo`
-  MODIFY `codTempo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codTempo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `codUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `voto`
 --
@@ -159,7 +213,8 @@ ALTER TABLE `voto`
 --
 ALTER TABLE `receita`
   ADD CONSTRAINT `CodCategoria` FOREIGN KEY (`codCategoria`) REFERENCES `categoria` (`codCategoria`),
-  ADD CONSTRAINT `CodTempo` FOREIGN KEY (`codTempo`) REFERENCES `tempo` (`codTempo`);
+  ADD CONSTRAINT `CodTempo` FOREIGN KEY (`codTempo`) REFERENCES `tempo` (`codTempo`),
+  ADD CONSTRAINT `FK_receitaUsuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`codUsuario`);
 
 --
 -- Limitadores para a tabela `voto`
