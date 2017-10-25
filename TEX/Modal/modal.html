@@ -49,6 +49,7 @@
       <input type="button" value="Login" href="#dialog1" name="modal" />
     </div>
 
+    <form method="POST" action="../login.php">
     <div id="boxes">
       <div id="dialog1" class="window">
         <div>
@@ -64,20 +65,22 @@
 
           <div id="test">
             <i class="user"></i>
-            <input type="text" placeholder="&nbsp;Usuário" onclick="this.value=''"/>
+            <input type="text" placeholder="&nbsp;Usuário" name="usuario" onclick="this.value=''"/>
           </div>
 
           </br>
 
           <div id="test">
             <i class="pass"></i>
-            <input type="password" value="Password" onclick="this.value=''"/>    
+            <input type="password" value="Password" name="senha" onclick="this.value=''"/>    
           </div>
 
           </br>
           
           <div id="btn1">
-            <input type="button" value="Login" />
+            <!--input type="button" value="Login" /-->
+            <input type="submit" name="entrar" value="Login" id="entrar">
+            <a href="../sign-up.html">Cadastre-se</a>
           </div>
 
         </div>
@@ -86,5 +89,6 @@
       <div id="mask"></div>
 
     </div>
+    </form>
   </body>
 </html>

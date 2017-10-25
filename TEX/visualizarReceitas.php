@@ -12,20 +12,21 @@
 		<body>
 			<?php
 				include('includes/conn.php');
-				$pegarLogin=$_COOKIE['login'];
-                $codUsuario=mysqli_query($conn,"SELECT codUsuario FROM usuario WHERE login LIKE '$pegarLogin'");
-                $usuario=mysqli_fetch_array($codUsuario);
-				$query1=mysqli_query($conn,"SELECT codReceita, nomeReceita FROM receita WHERE codUsuario LIKE '$usuario[codUsuario]'");
+				
+                
+				$query1=mysqli_query($conn,"SELECT codReceita, nomeReceita FROM receita; ");
 				
 				echo "<table>
 							<tr>
 								<td>Título da Receita</td>
-								</tr>
+								<td>Votos</td>
+							</tr>
 								";
 				while($query2=mysqli_fetch_array($query1)){
 					echo "<tr><td>".$query2['nomeReceita']."</td>";
-					echo "<td><center><a href='edit.php?codReceita=".$query2['codReceita']."'>(Editar)</a></center></td>";
-					echo "<td><center><a href='delete.php?codReceita=".$query2['codReceita']."'>(Excluir)</a></center></td></tr>";
+					echo "<td>0</td>";
+					echo "<td><center><a href='visualizar.php?codReceita=".$query2['codReceita']."'>Visualizar</a></center></td>";
+					echo "</tr>";
 				}
 				echo "</table>";
 			?>
