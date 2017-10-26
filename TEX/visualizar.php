@@ -2,48 +2,65 @@
 	<head>
 	<title></title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">	
-	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js">
+	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js">
 	</script>
-	<script>
-			$(document).ready(function() {
-				$("button").click(function(){
-        		
-        		<?php
-        		$userName=$_COOKIE['login'];
-        		if (empty($userName)) {
-        			echo "<script language='javascript' type='text/javascript'>alert('É necessário estar logado para poder votar!');</script>";
-        			echo"<script language='javascript' type='text/javascript'>window.location.href='visualizarReceitas.php';</script>";
-        		}
-        		else
-        		{
-        			$pegarLogin=$_COOKIE['login'];
-				    $codUsuario=mysqli_query($conn,"SELECT codUsuario FROM usuario WHERE login LIKE '$pegarLogin'");
-					$usuario=mysqli_fetch_array($codUsuario);
-        			$query_select = "SELECT codUsuario, codReceita FROM voto WHERE codUsuario = '$usuario[codUsuario]'";
-					$select = mysqli_query($conn, $query_select);
-					//$array = mysqli_fetch_array($select);
-					//$logarray = $array['codUsuario'];
-					if (mysqli_num_rows($select)!=0){
-						echo "<script language='javascript' type='text/javascript'>alert('Só é possível votar uma vez em cada receita!');</script>";
-					}
-					else{
-						$query = "INSERT INTO receita (codReceita, codUsuario, voto) VALUES ('$codReceita','$usuario[codUsuario]', 1)";
-  
-       				    $insert = mysqli_query($conn, $query);
-       				    if($insert)
-				        {
-				            echo"<script language='javascript' type='text/javascript'>alert('Voto registrado com sucesso!');window.location.href='viewReceitasCadastrado.php'</script>";
-				        }
-				        else
-				        {
-				            echo"<script language='javascript' type='text/javascript'>alert('Não foi possível registrar o voto!');</script>";
-				        }
-					}
-        		}
-        		?>
-   			 });
-				
+	<script type="text/javascript">
+			function readCookie(name) {
+				    var nameEQ = name + "=";
+				    var ca = document.cookie.split(';');
+				    for(var i=0;i < ca.length;i++) {
+				        var c = ca[i];
+				        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+				        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+				    }
+				    return null;
+			}
+			function send_data()
+				{
+				    var usuario = readCookie('login');
+				    alert(usuario);
+				    var codRec = document.getElementById("cReceita").value;
+				    alert(codRec);
+
+				    $.ajax({
+				    url: "voto.php?usuario=" + usuario + "&codReceita=" + codRec,
+				    type: 'POST',
+				    success: function(result) {
+				        // use the result as you wish in your html here
+				       
+				        
+				    },
+				    error(function() {
+				    	
+				    });
 				});
+
+				}
+				function switchCase(data)
+				{
+					switch(data){
+				        	case 1:{
+				        		alert("É necessário estar logado para votar!")
+				        		break;
+				        	}
+				        	case 2:{
+				        		alert("Já votou nessa receita!");
+				        		break;
+				        	}
+				        	case 3:{
+				        		alert("Voto cadastrado com sucesso!");
+				        		break;
+				        	}
+				        	case 4:{
+				        		alert("Ocorreu algum erro!");
+				        		break;
+				        	}
+				        	default:{
+				        		alert("banana");
+				        		break;
+				        	}
+				        }
+				}
 	</script>
 	
 	</head>
@@ -58,8 +75,8 @@
 						$nomeReceita=$_POST['nomeReceita'];
 						$ingredientes=$_POST['ingredientes'];
 						$modoPreparo=$_POST['modoPreparo'];
-						$codTempo=$_POST['codTempo'];
-						$codCategoria=$_POST['codCategoria'];
+						/*$codTempo=$_POST['codTempo'];
+						$codCategoria=$_POST['codCategoria'];*/
 						$userName=$_COOKIE['login'];
 						///////////////////////////<<<<<<<<<<<<<<<<<<<<<<<<<<
 						
@@ -67,11 +84,7 @@
 
 						
 						
-						if($query3){
-							echo "<script language='javascript' type='text/javascript'>alert('Receita editada com sucesso!');</script>";
-							echo"<script language='javascript' type='text/javascript'>window.location.href='viewReceitasCadastrado.php';</script>";
-							//header("location:viewReceitasCadastrado.php");
-						}
+						
 					}
 				
 				$query1=mysqli_query($conn,"select * from receita where codReceita LIKE '$codReceita'");
@@ -83,6 +96,7 @@
 					Nome da Receita: <input type="text" name="nomeReceita" value="<?php echo $query2['nomeReceita'];?>" readonly><br/>
 					Ingredientes: <textarea name="ingredientes" rows="10" cols="50" readonly><?php echo $query2['ingredientes'];?></textarea><br/>
 					Modo de Preparo: <textarea name="modoPreparo" rows="20" cols="70" readonly><?php echo $query2['modoPreparo'];?></textarea><br/>
+					<input type="text" id="cReceita" name="cReceita" value="<?php echo "$codReceita"; ?>" readonly>
 
 					Tempo de Preparo:<input type="text" name="tempoPreparo" value="<?php 
 
@@ -117,8 +131,7 @@
 
 
 					<br/>
-					<input type="submit" name="submit"><br/>
-					<button id="voto">votar</button>
+					<input type="submit" name="submit" onclick="send_data()"><br/>
 				</form>
 			<?php
 				}
