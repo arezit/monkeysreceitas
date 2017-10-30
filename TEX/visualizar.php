@@ -17,22 +17,16 @@
 			}
 			function send_data()
 				{
-				    var usuario = readCookie('login');
-				    alert(usuario);
-				    var codRec = document.getElementById("cReceita").value;
-				    alert(codRec);
 
 				    $.ajax({
 				    url: "voto.php?usuario=" + usuario + "&codReceita=" + codRec,
 				    type: 'POST',
 				    success: function(result) {
 				        // use the result as you wish in your html here
-				       
+				        hue=result;
+				       switchCase(hue);
 				        
-				    },
-				    error(function() {
-				    	
-				    });
+				    }
 				});
 
 				}
@@ -71,16 +65,42 @@
 				include('Includes/conn.php');
 				if(isset($_GET['codReceita'])){
 					$codReceita=$_GET['codReceita'];
+					//setcookie("idReceita",$codReceita,time()+3600);
 					if(isset($_POST['submit'])){
-						$nomeReceita=$_POST['nomeReceita'];
-						$ingredientes=$_POST['ingredientes'];
-						$modoPreparo=$_POST['modoPreparo'];
-						/*$codTempo=$_POST['codTempo'];
-						$codCategoria=$_POST['codCategoria'];*/
-						$userName=$_COOKIE['login'];
-						///////////////////////////<<<<<<<<<<<<<<<<<<<<<<<<<<
-						
-						/////////////////////////////////////////////////////////
+						if(empty($_COOKIE['login'])){
+        			echo"<script language='javascript' type='text/javascript'>alert('Faça login para poder votar em uma receita!');</script>";
+     				echo"<script language='javascript' type='text/javascript'>window.location.href='login.html';</script>";
+        		}
+        		else
+        		{
+        			//$codReceita=$_COOKIE['idReceita'];
+        			$pegarLogin=$_COOKIE['login'];
+				    $codUsuario=mysqli_query($conn,"SELECT codUsuario FROM usuario WHERE login LIKE '$pegarLogin'");
+					$usuario=mysqli_fetch_array($codUsuario);
+        			$query_select = "SELECT codUsuario, codReceita FROM voto WHERE codUsuario LIKE '$usuario[codUsuario]' AND codReceita LIKE '$codReceita'";
+					$select = mysqli_query($conn, $query_select);
+					
+					if (mysqli_num_rows($select)>0){
+						echo"<script language='javascript' type='text/javascript'>alert('Somente um voto por receita!');</script>";
+     					echo"<script language='javascript' type='text/javascript'>window.location.href='visualizarReceitas.php';</script>";
+					}
+					else{
+						$query = "INSERT INTO voto (codReceita, codUsuario) VALUES ('$codReceita','$usuario[codUsuario]')";
+						$q="UPDATE receita SET totalVotos = totalVotos + 1  WHERE codReceita = '$codReceita';";
+						$hue=mysqli_query($conn, $q);  
+       				    $insert = mysqli_query($conn, $query);
+       				    if($insert)
+				        {
+				            echo"<script language='javascript' type='text/javascript'>alert('Voto registrado com sucesso!');</script>";
+     						echo"<script language='javascript' type='text/javascript'>window.location.href='visualizarReceitas.php';</script>";
+				        }
+				        else
+				        {
+				            echo"<script language='javascript' type='text/javascript'>alert('Falha ao registrar o voto');</script>";
+     						echo"<script language='javascript' type='text/javascript'>window.location.href='visualizarReceitas.php';</script>";
+				        }
+					}
+        		}
 
 						
 						
@@ -131,7 +151,7 @@
 
 
 					<br/>
-					<input type="submit" name="submit" onclick="send_data()"><br/>
+					<input type="submit" value="submit" name="submit"><br/>
 				</form>
 			<?php
 				}

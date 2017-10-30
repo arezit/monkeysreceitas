@@ -14,7 +14,7 @@
 				include('includes/conn.php');
 				
                 
-				$query1=mysqli_query($conn,"SELECT codReceita, nomeReceita FROM receita; ");
+				$query1=mysqli_query($conn,"SELECT codReceita, nomeReceita, totalVotos FROM receita ORDER BY totalVotos desc, nomeReceita asc; ");
 				
 				echo "<table>
 							<tr>
@@ -24,7 +24,10 @@
 								";
 				while($query2=mysqli_fetch_array($query1)){
 					echo "<tr><td>".$query2['nomeReceita']."</td>";
-					echo "<td>0</td>";
+					/*$soloct="SELECT COUNT(codVoto) FROM voto WHERE codReceita LIKE ".$query2['codReceita'];
+					$res=mysqli_query($conn,$soloct);
+					$ros=mysqli_fetch_array($res); ///   $ros[0] pra mostrar*/
+					echo "<td>".$query2['totalVotos']."</td>";
 					echo "<td><center><a href='visualizar.php?codReceita=".$query2['codReceita']."'>Visualizar</a></center></td>";
 					echo "</tr>";
 				}
@@ -33,3 +36,5 @@
 			<a href="receita.php" target="conteudo"><input type="button" name="cadastro" value="Novo Cadastro"></a>
 		</body>
 </html>
+
+
