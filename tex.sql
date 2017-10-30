@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Out-2017 às 18:48
+-- Generation Time: 30-Out-2017 às 20:05
 -- Versão do servidor: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -55,20 +55,20 @@ CREATE TABLE `receita` (
   `modoPreparo` text CHARACTER SET utf8 COLLATE utf8_bin,
   `codCategoria` int(11) DEFAULT NULL,
   `codTempo` int(11) DEFAULT NULL,
-  `codUsuario` int(11) DEFAULT NULL
+  `codUsuario` int(11) DEFAULT NULL,
+  `totalVotos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `receita`
 --
 
-INSERT INTO `receita` (`codReceita`, `nomeReceita`, `ingredientes`, `modoPreparo`, `codCategoria`, `codTempo`, `codUsuario`) VALUES
-(26, 'asd', 'asd', 'asd', 1, 1, 2),
-(27, 'pojkq', 'pjvoiweoweljegnwewgwg', 'olwegowegbwebjweofoweihjngbwefwemgay', 1, 1, 2),
-(28, 'asd', 'asd', 'asd', 2, 1, 2),
-(29, 'asdasd', 'asdasdasd', 'asdasdasdasd', 5, 1, 2),
-(31, 'Ã³Ã­', 'Ã©ÃºÃ¡', 'Ã­Ã¹', 4, 1, 3),
-(32, 'Ã³', 'o', 'o', 3, 3, 3);
+INSERT INTO `receita` (`codReceita`, `nomeReceita`, `ingredientes`, `modoPreparo`, `codCategoria`, `codTempo`, `codUsuario`, `totalVotos`) VALUES
+(26, 'asd', 'asd', 'asd', 1, 1, 2, 2),
+(27, 'pojkq', 'pjvoiweoweljegnwewgwg', 'olwegowegbwebjweofoweihjngbwefwemgay', 1, 1, 2, 0),
+(28, 'asd', 'asd', 'asd', 2, 1, 2, 0),
+(29, 'asdasd', 'asdasdasd', 'asdasdasdasd', 5, 1, 2, 0),
+(31, 'Ã³Ã­', 'Ã©ÃºÃ¡', 'Ã­Ã¹', 4, 13, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,8 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`codUsuario`, `nome`, `email`, `login`, `senha`) VALUES
 (1, 'a', 'a', 'a', 'a'),
 (2, 'aa', 'aa', 'aa', 'aa'),
-(3, 'josÃ©', 'josÃ©', 'josÃ©', 'josÃ©');
+(3, 'josÃ©', 'josÃ©', 'josÃ©', 'josÃ©'),
+(4, '123', '123', '123', '123');
 
 -- --------------------------------------------------------
 
@@ -132,9 +133,17 @@ INSERT INTO `usuario` (`codUsuario`, `nome`, `email`, `login`, `senha`) VALUES
 CREATE TABLE `voto` (
   `codVoto` int(11) NOT NULL,
   `codReceita` int(11) NOT NULL,
-  `codUsuario` int(11) NOT NULL,
-  `voto` int(11) NOT NULL
+  `codUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `voto`
+--
+
+INSERT INTO `voto` (`codVoto`, `codReceita`, `codUsuario`) VALUES
+(8, 26, 4),
+(9, 31, 3),
+(10, 26, 3);
 
 --
 -- Indexes for dumped tables
@@ -188,7 +197,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `receita`
 --
 ALTER TABLE `receita`
-  MODIFY `codReceita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `codReceita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `tempo`
 --
@@ -198,12 +207,12 @@ ALTER TABLE `tempo`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `codUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `voto`
 --
 ALTER TABLE `voto`
-  MODIFY `codVoto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codVoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --
