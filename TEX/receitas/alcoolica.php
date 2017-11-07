@@ -11,10 +11,10 @@
 	</head>
 		<body>
 			<?php
-				include('includes/conn.php');
+				include('../includes/conn.php');
 				
                 
-				$query1=mysqli_query($conn,"SELECT codReceita, nomeReceita, totalVotos FROM receita ORDER BY totalVotos desc, nomeReceita asc; ");
+				$query1=mysqli_query($conn,"SELECT codReceita, nomeReceita, totalVotos FROM receita WHERE codCategoria LIKE 3 ORDER BY totalVotos desc, nomeReceita asc; ");
 				
 				echo "<table>
 							<tr>
@@ -28,12 +28,12 @@
 					$res=mysqli_query($conn,$soloct);
 					$ros=mysqli_fetch_array($res); ///   $ros[0] pra mostrar*/
 					echo "<td>".$query2['totalVotos']."</td>";
-					echo "<td><center><a href='visualizar.php?codReceita=".$query2['codReceita']."'>Visualizar</a></center></td>";
+					echo "<td><center><a href='../visualizar.php?codReceita=".$query2['codReceita']."'>Visualizar</a></center></td>";
 					echo "</tr>";
 				}
 				echo "</table>";
 			?>
-			<a href="receitas/hub.html" target="conteudo"><input type="button" name="voltar" value="Voltar"></a>
+			<a href="hub.html" target="conteudo"><input type="button" name="retorno" value="Voltar"></a>
 		</body>
 </html>
 
