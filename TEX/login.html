@@ -7,7 +7,7 @@
 <form method="POST" action="login.php">
 <label>Usuário:</label><input type="text" name="usuario" id="usuario"><br>
 <label>Senha:</label><input type="password" name="senha" id="senha"><br>
-<input type="submit" value="entrar" id="entrar" name="entrar"><br>
+<input type="submit" value="entrar" id="entrar" name="entrar" onclick="parent.login.location.reload()"><br>
 <a href="sign-up.html">Cadastre-se</a>
 </form>
 </body>

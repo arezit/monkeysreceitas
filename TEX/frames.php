@@ -5,8 +5,8 @@
 	<style type="css/bootstrap.css"></style>
 	<title>Frames</title>
 </head>
-	<frameset rows="5%,5%,*%" noresize border="0">
-			<frame name="login" src="html/loginBotoes.php"></frame>
+	<frameset rows="33px,33px,*%" noresize border="0">
+			<frame scrolling="no" name="login" src="html/loginBotoes.php"></frame>
 			<frame name="rank" src="html/menu.html"></frame>
 		<frameset cols="15%,*,15%" noresize border="0">
 			<frame name="esquerda"></frame>
