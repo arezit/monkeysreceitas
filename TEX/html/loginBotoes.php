@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<meta http-equiv="refresh" content="5">
+	<!--meta http-equiv="refresh" content="5"-->
 	<style type="../css/bootstrap.css"></style>
 	<title></title>
 	<script type="text/javascript">
