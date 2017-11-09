@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Out-2017 às 20:05
+-- Generation Time: 09-Nov-2017 às 17:18
 -- Versão do servidor: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -65,10 +65,11 @@ CREATE TABLE `receita` (
 
 INSERT INTO `receita` (`codReceita`, `nomeReceita`, `ingredientes`, `modoPreparo`, `codCategoria`, `codTempo`, `codUsuario`, `totalVotos`) VALUES
 (26, 'asd', 'asd', 'asd', 1, 1, 2, 2),
-(27, 'pojkq', 'pjvoiweoweljegnwewgwg', 'olwegowegbwebjweofoweihjngbwefwemgay', 1, 1, 2, 0),
+(27, 'pojkq', 'pjvoiweoweljegnwewgwg', 'olwegowegbwebjweofoweihjngbwefwemgay', 1, 1, 2, 1),
 (28, 'asd', 'asd', 'asd', 2, 1, 2, 0),
-(29, 'asdasd', 'asdasdasd', 'asdasdasdasd', 5, 1, 2, 0),
-(31, 'Ã³Ã­', 'Ã©ÃºÃ¡', 'Ã­Ã¹', 4, 13, 3, 1);
+(29, 'asdasd', 'asdasdasd', 'asdasdasdasd', 5, 6, 2, 0),
+(31, 'Ã³Ã­', 'Ã©ÃºÃ¡', 'Ã­Ã¹', 4, 13, 3, 1),
+(32, 'pÃ£o', '6kg de batata\r\n500gr farinha\r\nxd', 'mexer tudo e botar no forno', 2, 13, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,8 @@ CREATE TABLE `voto` (
 INSERT INTO `voto` (`codVoto`, `codReceita`, `codUsuario`) VALUES
 (8, 26, 4),
 (9, 31, 3),
-(10, 26, 3);
+(10, 26, 3),
+(11, 27, 3);
 
 --
 -- Indexes for dumped tables
@@ -197,7 +199,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `receita`
 --
 ALTER TABLE `receita`
-  MODIFY `codReceita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `codReceita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `tempo`
 --
@@ -212,7 +214,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `voto`
 --
 ALTER TABLE `voto`
-  MODIFY `codVoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `codVoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
