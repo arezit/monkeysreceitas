@@ -15,6 +15,9 @@
         }else{
           setcookie("login",$login,time()+3600);
           header("Location:indx.php");
+
+
         }
+       
     }
 ?>

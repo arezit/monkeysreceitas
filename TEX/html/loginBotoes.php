@@ -36,7 +36,7 @@
 			
 			<td><a href="../logout.php" target="conteudo"><input type="button" name="logout" value="sair"></a></td>
 			<form method="post" action="../pesquisa.php" target="conteudo"><div >
-			<td><input type="text" name="pesquisa" placeholder="pesquise aqui"><a target="conteudo"><input type="submit" name="submit" value="pskiza"></a></td>
+			<td><input type="text" name="pesquisa" placeholder="pesquise aqui"><a target="conteudo"><input type="submit" name="submit" value="&#x1F50D;"></a></td>
 			</div></form>
 			
 		</tr>
