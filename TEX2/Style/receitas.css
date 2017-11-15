@@ -1,0 +1,84 @@
+#box
+{
+  position:relative;
+  background-color: #FFF;
+  -webkit-background-clip:padding-box;
+  background-clip:padding-box;
+  border:1px solid #999;
+  border:1px solid rgba(0,0,0,.2);
+  border-radius:7px;
+  outline:0;
+  -webkit-box-shadow:0 3px 9px rgba(0,0,0,.5);
+  box-shadow:0 3px 9px rgba(0,0,0,.5);
+  height: 100px;
+  width: 100%;
+}
+#box #left
+{
+  float: left;
+  left: 0;
+  width: 30%;
+}
+#box #center1
+{
+  float: left;
+  left: 0;
+  width: 20%;
+}
+#box #center2
+{
+  float: left;
+  left: 0;
+  width: 20%;
+}
+#box #center3
+{
+  float: left;
+  left: 0;
+  width: 20%;
+}
+#box #center4
+{
+  float: left;
+  left: 0;
+  width: 25%;
+}
+#box #center5
+{
+  float: left;
+  left: 0;
+  width: 22.5%;
+  margin-top: 20px;
+}
+#box #right
+{
+  float: right;
+  right: 0;
+  width: 10%;
+  height: 100%;
+  background: #363636;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+#box #right .visualizar
+{
+  color: white;
+  font-size: 70px;
+  outline: thin dotted;
+  outline: 0px auto -webkit-focus-ring-color;
+  outline-offset: 0px;
+}
+a.visualizar:link
+{
+  text-decoration: none;
+}
+.newRecipe
+{
+  width: 25%;
+  height: 45px;
+  border-radius: 20px;
+  font-size: 18px;
+  outline: thin dotted;
+  outline: 0px auto -webkit-focus-ring-color;
+  outline-offset: 0px;
+}
