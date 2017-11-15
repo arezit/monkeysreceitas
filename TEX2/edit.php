@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="Style/style.css">
+		<link rel="stylesheet" type="text/css" href="Style/receitas.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="Js/lc.js"></script>
 		<script type="text/javascript">
@@ -251,7 +252,6 @@
 								{
 									echo "<script language='javascript' type='text/javascript'>alert('Receita editada com sucesso!');</script>";
 									echo"<script language='javascript' type='text/javascript'>window.location.href='viewReceitasCadastrado.php';</script>";
-									//header("location:viewReceitasCadastrado.php");
 								}
 							}
 							
@@ -260,19 +260,28 @@
 						
 					?>
 
+					<br />
+
 					<form method="post" action="">
-						Nome da Receita: <input type="text" name="nomeReceita" value="<?php echo $query2['nomeReceita'];?>">
+						<span style="float: left; margin-left: 30%;">Nome da receita:&nbsp;</span>
+						<input type="text" name="nomeReceita" value="<?php echo $query2['nomeReceita'];?>">
 						<br />
-						Ingredientes: <textarea name="ingredientes" rows="10" cols="50"><?php echo $query2['ingredientes'];?></textarea>
 						<br />
-						Modo de Preparo: <textarea name="modoPreparo" rows="20" cols="70"><?php echo $query2['modoPreparo'];?></textarea>
+						<span style="float: left; margin-left: 32.4%;">Ingredientes:&nbsp;</span>
+						<textarea name="ingredientes" rows="10" cols="50"><?php echo $query2['ingredientes'];?></textarea>
+						<br />
+						<br />
+						<span style="float: left; margin-left: 29.4%;">Modo de Preparo:&nbsp;</span>
+						<textarea name="modoPreparo" rows="20" cols="70"><?php echo $query2['modoPreparo'];?></textarea>
 						<br />
 
 					<?php 
 						$sql = "SELECT * FROM tempo";
 						$result = mysqli_query($conn,$sql);
 
-						echo "Tempo de preparo:<select name='codTempo'>";
+						echo "<br />";
+						echo "<span style='float: left; margin-left: 29%;'>Tempo de preparo:&nbsp;</span>";
+						echo "<select name='codTempo'>";
 
 						while ($row = mysqli_fetch_array($result)) 
 						{
@@ -285,13 +294,16 @@
 								echo "<option value='" . $row[codTempo] . "'>" . $row[descTempo] . "</option>";
 
 						}
-						echo "</select><p/>";
+						echo "</select>";
 
 						////////////////////////
 						$sql = "SELECT * FROM categoria";
 						$result = mysqli_query($conn,$sql);
 
-						echo "Categoria:<select name='codCategoria'>";
+						echo "<br /><br />";
+						echo "<span style='float: left; margin-left: 34%;'>Categoria:&nbsp;</span>";
+						echo "<select name='codCategoria'>";
+
 						while ($row = mysqli_fetch_array($result)) 
 						{
 							if ($row[codCategoria]==$query2[codCategoria]) 
@@ -306,9 +318,9 @@
 
 					?>
 
-
 						<br />
-						<input type="submit" name="submit">
+						<br />
+						<input class="cadastrar" type="submit" name="submit" value="Enviar">
 						<br />
 					</form>
 

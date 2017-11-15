@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="Style/style.css">
+		<link rel="stylesheet" type="text/css" href="Style/receitas.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="Js/lc.js"></script>
 		<script type="text/javascript">
@@ -233,15 +234,17 @@
 				<div id="column_center">
 					<br />
 					<form method="POST" action="cadReceita.php">
-						<center>
-						Nome da receita:<input type="text" name="nomeReceita" placeholder="Nome da sua Receita">
+						<span style="float: left; margin-left: 30%;">Nome da receita:&nbsp;</span>
+						<input type="text" name="nomeReceita" placeholder="Nome da sua Receita">
 						<br />
 						<br />
-						Ingredientes:<textarea name="ingredientes" rows="10" cols="50"></textarea>
+						<span style="float: left; margin-left: 32.4%;">Ingredientes:&nbsp;</span>
+						<textarea name="ingredientes" rows="10" cols="50"></textarea>
 						<br />
-						Modo de Preparo:<textarea name="modoPreparo" rows="20" cols="70"></textarea>
 						<br />
-					</center>
+						<span style="float: left; margin-left: 29.4%;">Modo de Preparo:&nbsp;</span>
+						<textarea name="modoPreparo" rows="20" cols="70"></textarea>
+						<br />
 
 						<?php
 							include("includes/conn.php");
@@ -250,7 +253,8 @@
 							$result = mysqli_query($conn,$sql);
 
 							echo "<br />";
-							echo "Tempo de preparo:<select name='tempo'>";
+							echo "<span style='float: left; margin-left: 29%;'>Tempo de preparo:&nbsp;</span>";
+							echo "<select name='tempo'>";
 
 							while ($row = mysqli_fetch_array($result)) 
 							{
@@ -262,7 +266,8 @@
 							$result = mysqli_query($conn,$sql);
 
 							echo "<br /><br />";
-							echo "Categoria:<select name='categoria'>";
+							echo "<span style='float: left; margin-left: 34%;'>Categoria:&nbsp;</span>";
+							echo "<select name='categoria'>";
 
 							while ($row = mysqli_fetch_array($result)) 
 							{
@@ -273,7 +278,7 @@
 
 						<br />
 						<br />
-						<input type="submit" name="submit" value="cadastrar">
+						<input class="cadastrar" type="submit" name="submit" value="cadastrar">
 					</form>
 				</div>
 

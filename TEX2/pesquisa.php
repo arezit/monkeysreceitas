@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="Style/style.css">
+		<link rel="stylesheet" type="text/css" href="Style/receitas.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="Js/lc.js"></script>
 		<script type="text/javascript">
@@ -237,7 +238,7 @@
 						if(isset($_POST['submit']))
 						{
 							$pesquisa=$_POST['pesquisa'];
-							$query1="SELECT * FROM receita WHERE nomeReceita LIKE '%".$pesquisa."%' OR ingredientes LIKE '%".$pesquisa."%' OR modoPreparo LIKE '%".$pesquisa."%' ;";
+							$query1="SELECT * FROM receita WHERE nomeReceita LIKE '%".$pesquisa."%' OR ingredientes LIKE '%".$pesquisa."%';";
 							$select=mysqli_query($conn,$query1);
 
 							if (mysqli_num_rows($select)==0)
@@ -247,23 +248,31 @@
 							}
 							else
 							{
-								echo "<table>
-										<tr>
-											<td>Título da Receita</td>
-											<td>Votos</td>
-										</tr>";
-
 								while($query2=mysqli_fetch_array($select))
 								{
-									echo "<tr><td>".$query2['nomeReceita']."</td>";
-									/*$soloct="SELECT COUNT(codVoto) FROM voto WHERE codReceita LIKE ".$query2['codReceita'];
-									$res=mysqli_query($conn,$soloct);
-									$ros=mysqli_fetch_array($res); ///   $ros[0] pra mostrar*/
-									echo "<td>".$query2['totalVotos']."</td>";
-									echo "<td><center><a href='visualizar.php?codReceita=".$query2['codReceita']."'>Visualizar</a></center></td>";
-									echo "</tr>";
-								}
-								echo "</table>";     
+									echo "<br /><div id='box'>";
+									echo "<div id='left'><h3>".$query2['nomeReceita']."</h3></div>";
+
+									$sql = "SELECT categoria.descCategoria FROM categoria, receita WHERE categoria.codCategoria=receita.codCategoria AND codReceita LIKE ".$query2['codReceita'].";";
+									$result = mysqli_query($conn,$sql);
+										
+									while ($row = mysqli_fetch_array($result)) 
+									{
+										echo "<div id='center1'><center><h3>Categoria:</h3><br />".$row['descCategoria']."</center></div>";
+									}
+
+									$sql = "SELECT tempo.descTempo FROM tempo, receita WHERE tempo.codTempo=receita.codTempo AND codReceita LIKE ".$query2['codReceita'].";";
+									$result = mysqli_query($conn,$sql);
+										
+									while ($row = mysqli_fetch_array($result)) 
+									{
+										echo "<div id='center2'><center><h3>Tempo de Preparo:</h3><br />".$row['descTempo']."</center></div>";
+									}			
+
+									echo "<div id='center3'><center><h3>Votos:</h3><br />".$query2['totalVotos']."</center></div>";
+									echo "<div id='right'><center><a class='visualizar' value='&#10095;' href='visualizar.php?codReceita=".$query2['codReceita']."'>&#10095;</a></center></div>";
+									echo "</div>";
+								} 
 							}
 						}
 					 ?>

@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="Style/style.css">
+		<link rel="stylesheet" type="text/css" href="Style/receitas.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="Js/lc.js"></script>
@@ -240,7 +241,7 @@
 						if(isset($_GET['codReceita']))
 						{
 							$codReceita=$_GET['codReceita'];
-							//setcookie("idReceita",$codReceita,time()+3600);
+
 							if(isset($_POST['submit']))
 							{
 								if(empty($_COOKIE['login']))
@@ -287,17 +288,26 @@
 							$query2=mysqli_fetch_array($query1);
 						
 					?>
-						
-					<form method="post" action="">
-						Nome da Receita: <input type="text" name="nomeReceita" value="<?php echo $query2['nomeReceita'];?>" readonly>
-						<br/>
-						Ingredientes: <textarea name="ingredientes" rows="10" cols="50" readonly><?php echo $query2['ingredientes'];?></textarea>
-						<br/>
-						Modo de Preparo: <textarea name="modoPreparo" rows="20" cols="70" readonly><?php echo $query2['modoPreparo'];?></textarea>
-						<br/>
-						<input type="text" id="cReceita" name="cReceita" value="<?php echo "$codReceita"; ?>" readonly>
+					
+					<br />
 
-						Tempo de Preparo:<input type="text" name="tempoPreparo" value="<?php 
+					<form method="post" action="">
+						<span style="float: left; margin-left: 30%;">Nome da receita:&nbsp;</span>
+						<input type="text" name="nomeReceita" value="<?php echo $query2['nomeReceita'];?>" readonly>
+						<br />
+						<br />
+						<span style="float: left; margin-left: 32.4%;">Ingredientes:&nbsp;</span> 
+						<textarea name="ingredientes" rows="10" cols="50" readonly><?php echo $query2['ingredientes'];?></textarea>
+						<br />
+						<br />
+						<span style="float: left; margin-left: 29.4%;">Modo de Preparo:&nbsp;</span> 
+						<textarea name="modoPreparo" rows="20" cols="70" readonly><?php echo $query2['modoPreparo'];?></textarea>
+						<br />
+						<!--
+						<input type="text" id="cReceita" name="cReceita" value="<?php echo "$codReceita"; ?>" readonly>
+						-->
+						<span style="float: left; margin-left: 29%;">Tempo de preparo:&nbsp;</span>
+						<input type="text" name="tempoPreparo" value="<?php 
 						$sql = "SELECT tempo.descTempo FROM tempo, receita WHERE tempo.codTempo=receita.codTempo AND codReceita LIKE '$codReceita'";
 						$result = mysqli_query($conn,$sql);
 								
@@ -307,7 +317,10 @@
 						}
 						?>" readonly>
 							
-						Categoria:<input type="text" name="categoria" value="<?php
+						<br />
+						<br />
+						<span style="float: left; margin-left: 34%;">Categoria:&nbsp;</span>
+						<input type="text" name="categoria" value="<?php
 						////////////////////////
 						$sql = "SELECT categoria.descCategoria FROM categoria, receita WHERE categoria.codCategoria=receita.codCategoria AND codReceita LIKE '$codReceita'";
 						$result = mysqli_query($conn,$sql);
@@ -318,11 +331,12 @@
 						}
 			 			?>" readonly>
 
-						<br/>
+						<br />
+						<br />
 
-						<input type="submit" value="submit" name="submit">
+						<input class="votar" type="submit" value="Votar" name="submit">
 
-						<br/>
+						<br />
 					</form>
 
 					<?php
