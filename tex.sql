@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 09-Nov-2017 às 17:18
+-- Generation Time: 16-Nov-2017 às 17:23
 -- Versão do servidor: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -64,12 +64,12 @@ CREATE TABLE `receita` (
 --
 
 INSERT INTO `receita` (`codReceita`, `nomeReceita`, `ingredientes`, `modoPreparo`, `codCategoria`, `codTempo`, `codUsuario`, `totalVotos`) VALUES
-(26, 'asd', 'asd', 'asd', 1, 1, 2, 2),
+(26, 'asd', 'asdsdsddsdd', 'asd', 1, 1, 2, 2),
 (27, 'pojkq', 'pjvoiweoweljegnwewgwg', 'olwegowegbwebjweofoweihjngbwefwemgay', 1, 1, 2, 1),
-(28, 'asd', 'asd', 'asd', 2, 1, 2, 0),
-(29, 'asdasd', 'asdasdasd', 'asdasdasdasd', 5, 6, 2, 0),
 (31, 'Ã³Ã­', 'Ã©ÃºÃ¡', 'Ã­Ã¹', 4, 13, 3, 1),
-(32, 'pÃ£o', '6kg de batata\r\n500gr farinha\r\nxd', 'mexer tudo e botar no forno', 2, 13, 3, 0);
+(32, 'pÃ£o', '6kg de batata\r\n500gr farinha\r\nxd', 'mexer tudo e botar no forno', 2, 13, 3, 0),
+(33, 'asdasd', 'sadasdsa', 'asdasdas', 1, 9, 1, 0),
+(36, 'ty', 'gg', 'ez', 3, 13, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -123,7 +123,8 @@ INSERT INTO `usuario` (`codUsuario`, `nome`, `email`, `login`, `senha`) VALUES
 (1, 'a', 'a', 'a', 'a'),
 (2, 'aa', 'aa', 'aa', 'aa'),
 (3, 'josÃ©', 'josÃ©', 'josÃ©', 'josÃ©'),
-(4, '123', '123', '123', '123');
+(4, '123', '123', '123', '123'),
+(5, 'qwdasd', 'adsad@asdasfd', 'asdfsadf', '123');
 
 -- --------------------------------------------------------
 
@@ -136,16 +137,6 @@ CREATE TABLE `voto` (
   `codReceita` int(11) NOT NULL,
   `codUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `voto`
---
-
-INSERT INTO `voto` (`codVoto`, `codReceita`, `codUsuario`) VALUES
-(8, 26, 4),
-(9, 31, 3),
-(10, 26, 3),
-(11, 27, 3);
 
 --
 -- Indexes for dumped tables
@@ -199,7 +190,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `receita`
 --
 ALTER TABLE `receita`
-  MODIFY `codReceita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `codReceita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `tempo`
 --
@@ -209,7 +200,7 @@ ALTER TABLE `tempo`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `codUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `codUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `voto`
 --
@@ -223,16 +214,16 @@ ALTER TABLE `voto`
 -- Limitadores para a tabela `receita`
 --
 ALTER TABLE `receita`
-  ADD CONSTRAINT `CodCategoria` FOREIGN KEY (`codCategoria`) REFERENCES `categoria` (`codCategoria`),
-  ADD CONSTRAINT `CodTempo` FOREIGN KEY (`codTempo`) REFERENCES `tempo` (`codTempo`),
-  ADD CONSTRAINT `FK_receitaUsuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`codUsuario`);
+  ADD CONSTRAINT `CodCategoria` FOREIGN KEY (`codCategoria`) REFERENCES `categoria` (`codCategoria`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `CodTempo` FOREIGN KEY (`codTempo`) REFERENCES `tempo` (`codTempo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_receitaUsuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`codUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `voto`
 --
 ALTER TABLE `voto`
-  ADD CONSTRAINT `codReceita` FOREIGN KEY (`codReceita`) REFERENCES `receita` (`codReceita`),
-  ADD CONSTRAINT `codUsuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`codUsuario`);
+  ADD CONSTRAINT `fk_codReceita` FOREIGN KEY (`codReceita`) REFERENCES `receita` (`codReceita`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_codUsuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`codUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
