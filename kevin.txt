@@ -1,0 +1,5 @@
+Boa tarde a todos, primeiramente gostaria  de agradecer a presença de todos principalmente a banca. A nossa equipe é constituida por Daniel, Leonardo, Vinicios e eu, Kevin. O nosso trabalho experimental é sobre o desenvolvimento de um site de receitas culinarias.
+---------------------
+Nosso principal objetivo é dar oportunidade para as pessoas compartilharem suas receitas, de forma colaborativa. Onde poderão aprender a fazer novos tipos de culinária de diferentes categorias: doces,  salgados, bebidas entre outros.
+---------------------
+
