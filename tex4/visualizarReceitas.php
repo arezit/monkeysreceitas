@@ -267,20 +267,6 @@
 							echo "</div>";
 						}
 					?>
-
-					<br />
-					<br />
-					
-					<div id="rodape">
-						<center>
-							<h3>TCC: Monkey's Receitas</h3>
-							<br />
-							<h3>Kevin, Daniel, Leonardo, Vinicios</h3>
-							<br />
-							<h3>monkeysreceitas@hotmail.com</h3>
-						</center>
-					</div>
-			
 				</div>
 
 				<div id="column_right">

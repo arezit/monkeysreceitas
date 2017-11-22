@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="../Style/style.css">
 		<link rel="stylesheet" type="text/css" href="../Style/receitas.css">
@@ -240,7 +240,7 @@
 						include('../includes/conn.php');
 						
 		                
-						$query1=mysqli_query($conn,"SELECT codReceita, nomeReceita, codCategoria, codTempo,totalVotos FROM receita WHERE codCategoria LIKE 1 ORDER BY totalVotos desc, nomeReceita asc; ");
+						$query1=mysqli_query($conn,"SELECT codReceita, nomeReceita, codCategoria, codTempo,totalVotos FROM receita WHERE codCategoria LIKE 1 ORDER BY totalVotos desc, nomeReceita asc  LIMIT 5; ");
 						
 						while($query2=mysqli_fetch_array($query1))
 						{
@@ -268,19 +268,6 @@
 							echo "</div>";
 						}
 					?>
-					
-					<br />
-					<br />
-					
-					<div id="rodape">
-						<center>
-							<h3>TCC: Monkey's Receitas</h3>
-							<br />
-							<h3>Kevin, Daniel, Leonardo, Vinicios</h3>
-							<br />
-							<h3>monkeysreceitas@hotmail.com</h3>
-						</center>
-					</div>
 				</div>
 
 				<div id="column_right">
